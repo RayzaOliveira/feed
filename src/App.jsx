@@ -7,9 +7,9 @@ import "./global.css";
 
 export function App() {
   return (
-    <div className={styles.wrapper}>
+    <div>
       <Header />
-      <div>
+      <div className={styles.wrapper}>
         <Sidebar />
         <main>
           <Post
