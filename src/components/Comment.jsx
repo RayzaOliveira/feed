@@ -1,3 +1,4 @@
+import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
 import { ThumbsUp, Trash } from "@phosphor-icons/react";
@@ -5,7 +6,7 @@ import { ThumbsUp, Trash } from "@phosphor-icons/react";
 export const Comment = () => {
   return (
     <div className={styles.comment}>
-      <img src="https://i.pinimg.com/564x/ba/4b/5d/ba4b5d36d494cc2cb0084083023aa60f.jpg" />
+      <Avatar src="https://i.pinimg.com/564x/e9/8d/d1/e98dd1c06088cde75fdeef76783bbd4e.jpg" />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
@@ -16,7 +17,7 @@ export const Comment = () => {
               </time>
             </div>
             <button title="Deletar comentário">
-              <Trash size={20} />
+              <Trash size={24} />
             </button>
           </header>
           <p>Muito bom Devon, parabéns!! 👏👏</p>
