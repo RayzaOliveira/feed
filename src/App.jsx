@@ -5,6 +5,52 @@ import { Sidebar } from "./components/Sidebar";
 import styles from "./App.module.css";
 import "./global.css";
 
+//Iteração: é o processo de repetir uma série de ações várias vezes. Geralmente, em programação, isso é feito com estruturas como loops (for, while, etc.), que permitem executar um bloco de código repetidamente até que uma condição específica seja atendida.
+//author: {avatarUrl: '', name: '', role: ''}
+//publishedAt: Date
+//content: string
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl:
+        "https://i.pinimg.com/564x/f9/11/5a/f9115aa92ce465f2c02b277fbae50097.jpg",
+      name: "Toddy",
+      role: "Software Engineer",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-05-03 20:00:00"),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl:
+        "https://i.pinimg.com/564x/e9/8d/d1/e98dd1c06088cde75fdeef76783bbd4e.jpg",
+      name: "Maya",
+      role: "Software Engineer",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-05-03 20:00:00"),
+  },
+];
+
 export function App() {
   return (
     <div>
@@ -12,12 +58,15 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Rayza Rios"
-            content="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis deleniti rem minima repellat odio cupiditate aliquid expedita quia? Numquam nostrum eum nihil doloremque reiciendis ad esse doloribus soluta dicta voluptatum!"
-          />
-
-          <Post author="Vitor Rios" content="Post legal" />
+          {posts.map((post) => {
+            return (
+              <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </div>
