@@ -4,10 +4,15 @@ import { format, formatDistanceToNow } from "date-fns";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 
+import { useState } from "react";
 import styles from "./Post.module.css";
 import ptBR from "date-fns/locale/pt-BR";
 
 export const Post = ({ author, publishedAt, content }) => {
+  // Estado: variáveis que eu quero que o componente monitore
+  // const[valor da variável, função que altera o valor da variável] = hook() ou método do react;
+  const [comments, setComments] = useState([1, 2]);
+
   /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat */
   const publishedDateFormatted = format(
     publishedAt,
@@ -22,6 +27,14 @@ export const Post = ({ author, publishedAt, content }) => {
     locale: ptBR,
     addSuffix: true,
   });
+
+  //handle: um padrão. Função disparada pela ação do usuário
+  function handleCreateNewComment() {
+    event.preventDefault();
+
+    //Imutabilidade: não passo somente o quero inserir, mas sim o novo valor
+    setComments([...comments, comments.length + 1]);
+  }
 
   return (
     <article className={styles.post}>
@@ -58,16 +71,17 @@ export const Post = ({ author, publishedAt, content }) => {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea placeholder="Deixe um comentário" />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
         <div className={styles.commentList}>
-          <Comment />
-          <Comment />
-          <Comment />
+          {/* eslint-disable-next-line no-unused-vars */}
+          {comments.map((comment) => {
+            return <Comment />;
+          })}
         </div>
       </form>
     </article>
