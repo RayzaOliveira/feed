@@ -11,7 +11,9 @@ import ptBR from "date-fns/locale/pt-BR";
 export const Post = ({ author, publishedAt, content }) => {
   // Estado: variáveis que eu quero que o componente monitore
   // const[valor da variável, função que altera o valor da variável] = hook() ou método do react;
-  const [comments, setComments] = useState([1, 2]);
+  const [comments, setComments] = useState(["Post muito bacana, hein?!"]);
+
+  const [newCommentText, setNewCommentText] = useState("");
 
   /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat */
   const publishedDateFormatted = format(
@@ -33,7 +35,12 @@ export const Post = ({ author, publishedAt, content }) => {
     event.preventDefault();
 
     //Imutabilidade: não passo somente o quero inserir, mas sim o novo valor
-    setComments([...comments, comments.length + 1]);
+    setComments([...comments, newCommentText]);
+    setNewCommentText("");
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event.target.value);
   }
 
   return (
@@ -73,17 +80,25 @@ export const Post = ({ author, publishedAt, content }) => {
 
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          placeholder="Deixe um comentário"
+          name="comment"
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
         <div className={styles.commentList}>
           {/* eslint-disable-next-line no-unused-vars */}
           {comments.map((comment) => {
-            return <Comment />;
+            return <Comment content={comment} />;
           })}
         </div>
       </form>
     </article>
   );
 };
+
+// Programação Imperativa: O que deve ser feito (passo-a-passo);
+// Programação Declarativa: Quais as condições para eu ter o resultado final.
