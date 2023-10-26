@@ -67,10 +67,11 @@ export const Post = ({ author, publishedAt, content }) => {
           line, pq em cada linha ele vai fazer algo */}
         {content.map((line) => {
           if (line.type === "paragraph") {
-            return <p>{line.content}</p>;
+            return <p key={line.content}>{line.content}</p>;
           } else if (line.type === "link") {
             return (
-              <p>
+              // A key, deve ser única e colocada no primeiro elemento HTML
+              <p key={line.content}>
                 <a href="#">{line.content}</a>
               </p>
             );
@@ -92,7 +93,7 @@ export const Post = ({ author, publishedAt, content }) => {
         <div className={styles.commentList}>
           {/* eslint-disable-next-line no-unused-vars */}
           {comments.map((comment) => {
-            return <Comment content={comment} />;
+            return <Comment key={comment} content={comment} />;
           })}
         </div>
       </form>
