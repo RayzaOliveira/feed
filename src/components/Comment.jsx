@@ -4,7 +4,12 @@ import styles from "./Comment.module.css";
 
 import { ThumbsUp, Trash } from "@phosphor-icons/react";
 
-export const Comment = ({ content }) => {
+export const Comment = ({ content, onDeleteComment }) => {
+  function handleDeleteComment() {
+    // Padrão de nomenclatura:onDeleteComment, para indicar função enviada como propriedade, função disparada pela ação do usuário.
+    onDeleteComment(content);
+  }
+
   return (
     <div className={styles.comment}>
       <Avatar src="https://i.pinimg.com/564x/e9/8d/d1/e98dd1c06088cde75fdeef76783bbd4e.jpg" />
@@ -17,7 +22,8 @@ export const Comment = ({ content }) => {
                 Cerca de 1h atrás
               </time>
             </div>
-            <button title="Deletar comentário">
+            {/* Padrão de nomenclatura: handle, para indicar ação dp usuário */}
+            <button onClick={handleDeleteComment} title="Deletar comentário">
               <Trash size={24} />
             </button>
           </header>
