@@ -18,16 +18,16 @@ const posts = [
       avatarUrl:
         "https://i.pinimg.com/564x/f9/11/5a/f9115aa92ce465f2c02b277fbae50097.jpg",
       name: "Toddy",
-      role: "Software Engineer",
+      role: "Pet da Carol",
     },
     content: [
-      { type: "paragraph", content: "Fala galeraa 👋" },
+      { type: "paragraph", content: "🚀 Novidade aumiga! 🚀🐾" },
       {
         type: "paragraph",
         content:
-          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+          "Hoje é dia de desafio pet! 🐕💥 Fale o truque mais impressionante do seu peludo! 🎩✨ Será um giro? Um 'dê a pata'? Ou talvez um 'finge de morto' super dramático? 😆",
       },
-      { type: "link", content: "jane.design/doctorcare" },
+      { type: "link", content: "#CãesDivertidos#TruquesCaninos#DesafioPet" },
     ],
     publishedAt: new Date("2022-05-03 20:00:00"),
   },
@@ -36,17 +36,20 @@ const posts = [
     author: {
       avatarUrl:
         "https://i.pinimg.com/564x/d6/2d/7c/d62d7ce0136d1e3ed4027b1c2ed0fcf8.jpg",
-      name: "Maya",
-      role: "Software Engineer",
+      name: "Jolie",
+      role: "Pet do Vitor",
     },
     content: [
-      { type: "paragraph", content: "Fala galeraa 👋" },
+      { type: "paragraph", content: "🎉🐕 Festa da Fantasia Canina! 🐕🎉" },
       {
         type: "paragraph",
         content:
-          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+          "Hoje é dia de carnaval de quatroPatas e queremos ver a criatividade da galera! 🌈👑 Vamos lá, aumigos, é hora de vestir aquelas fantasias divertidas!",
       },
-      { type: "link", content: "jane.design/doctorcare" },
+      {
+        type: "link",
+        content: "#FoliaCanina#CarnavalDeQuatroPatas#FantasiaPet 🎭🐾",
+      },
     ],
     publishedAt: new Date("2022-05-03 20:00:00"),
   },

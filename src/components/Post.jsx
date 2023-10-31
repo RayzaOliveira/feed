@@ -11,7 +11,9 @@ import ptBR from "date-fns/locale/pt-BR";
 export const Post = ({ author, publishedAt, content }) => {
   // Estado: variáveis que eu quero que o componente monitore
   // const[valor da variável, função que altera o valor da variável] = hook() ou método do react;
-  const [comments, setComments] = useState(["Post muito bacana, hein?!"]);
+  const [comments, setComments] = useState([
+    "Lembre-se, cada truque merece um petisco! 🍖",
+  ]);
 
   const [newCommentText, setNewCommentText] = useState("");
 
@@ -101,7 +103,7 @@ export const Post = ({ author, publishedAt, content }) => {
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea
-          placeholder="Deixe um comentário"
+          placeholder="Deixe seu comentário"
           name="comment"
           value={newCommentText}
           onChange={handleNewCommentChange}

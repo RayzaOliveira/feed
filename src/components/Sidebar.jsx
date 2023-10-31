@@ -12,8 +12,8 @@ export const Sidebar = () => {
       ></img>
       <div className={styles.profile}>
         <Avatar src="https://i.pinimg.com/564x/4f/81/4e/4f814ec276383bb9be4daa6bc5bddf0e.jpg" />
-        <strong>Rayza</strong>
-        <span>Software Engineer</span>
+        <strong>Maya</strong>
+        <span>Pet da Rayza</span>
       </div>
       <footer>
         <a href="#">
