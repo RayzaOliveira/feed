@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
 import { ThumbsUp, Trash } from "@phosphor-icons/react";
 
 export const Comment = ({ content, onDeleteComment }) => {
+  const [likeCount, setLikeCount] = useState(0);
   function handleDeleteComment() {
     // Padrão de nomenclatura:onDeleteComment, para indicar função enviada como propriedade, função disparada pela ação do usuário.
     onDeleteComment(content);
+  }
+
+  function handleLikeComment() {
+    setLikeCount(likeCount + 1);
   }
 
   return (
@@ -30,9 +36,10 @@ export const Comment = ({ content, onDeleteComment }) => {
           <p>{content}</p>
         </div>
         <footer>
-          <button>
+          {/*handleLikeComment, é a função, enquanto handleLikeComment(), seria a execução da função. Assim todos eventos do React, como onSubmit, onClick etc, recebe uma função. */}
+          <button onClick={handleLikeComment}>
             <ThumbsUp />
-            Aplaudir <span>20</span>
+            Aplaudir <span>{likeCount}</span>
           </button>
         </footer>
       </div>

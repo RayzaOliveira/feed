@@ -114,19 +114,20 @@ export const Post = ({ author, publishedAt, content }) => {
             Publicar
           </button>
         </footer>
-        <div className={styles.commentList}>
-          {/* eslint-disable-next-line no-unused-vars */}
-          {comments.map((comment) => {
-            return (
-              <Comment
-                key={comment}
-                content={comment}
-                onDeleteComment={deleteComment}
-              />
-            );
-          })}
-        </div>
       </form>
+
+      <div className={styles.commentList}>
+        {/* eslint-disable-next-line no-unused-vars */}
+        {comments.map((comment) => {
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
+        })}
+      </div>
     </article>
   );
 };
