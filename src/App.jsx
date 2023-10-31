@@ -35,7 +35,7 @@ const posts = [
     id: 2,
     author: {
       avatarUrl:
-        "https://i.pinimg.com/564x/e9/8d/d1/e98dd1c06088cde75fdeef76783bbd4e.jpg",
+        "https://i.pinimg.com/564x/d6/2d/7c/d62d7ce0136d1e3ed4027b1c2ed0fcf8.jpg",
       name: "Maya",
       role: "Software Engineer",
     },
