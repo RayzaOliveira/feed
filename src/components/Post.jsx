@@ -40,7 +40,15 @@ export const Post = ({ author, publishedAt, content }) => {
   }
 
   function handleNewCommentChange() {
+    event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
+  }
+
+  function handleNewCommentInvalid() {
+    console.log(event);
+    // setCustomValidity(), método para modificar o nome
+    //target, elemento onde aconteceu o evento, nesse caso a textArea
+    event.target.setCustomValidity("Esse campo é obrigatório!");
   }
 
   function deleteComment(commentsToDelete) {
@@ -51,6 +59,8 @@ export const Post = ({ author, publishedAt, content }) => {
     //Imutabilidade: As variáreis não sofrem mutação (nunca alteramos a variável na memoria). Nos criamos um novo valor (um novo espaço na memória)
     setComments(commentsWithoutDeletedOne);
   }
+
+  const isNewCommentEmpty = newCommentText.length === 0;
 
   return (
     <article className={styles.post}>
@@ -95,9 +105,14 @@ export const Post = ({ author, publishedAt, content }) => {
           name="comment"
           value={newCommentText}
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
         <footer>
-          <button type="submit">Publicar</button>
+          {/* disabled, recebe true ou false */}
+          <button type="submit" disabled={isNewCommentEmpty}>
+            Publicar
+          </button>
         </footer>
         <div className={styles.commentList}>
           {/* eslint-disable-next-line no-unused-vars */}
