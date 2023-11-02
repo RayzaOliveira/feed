@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-key */
 import { Header } from "./components/Header";
-import { Post } from "./components/Post";
+import { Post, Content } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
 
 import styles from "./App.module.css";
@@ -67,7 +66,7 @@ export function App() {
               <Post
                 key={post.id}
                 author={post.author}
-                content={post.content}
+                content={post.content as Content[]}
                 publishedAt={post.publishedAt}
               />
             );

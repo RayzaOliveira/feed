@@ -1,14 +1,29 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 import { format, formatDistanceToNow } from "date-fns";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 import styles from "./Post.module.css";
 import ptBR from "date-fns/locale/pt-BR";
 
-export const Post = ({ author, publishedAt, content }) => {
+interface Author {
+  avatarUrl: string;
+  name: string;
+  role: string;
+}
+export interface Content {
+  type: "paragraph" | "link";
+  content: string;
+}
+
+interface PostProps {
+  author: Author;
+  publishedAt: Date;
+  content: Content[];
+}
+
+// Para {}, em objetos, tem que falar o tipo do objeto inteiro, não poder ser cada elemento do objeto separado
+export const Post = ({ author, publishedAt, content }: PostProps) => {
   // Estado: variáveis que eu quero que o componente monitore
   // const[valor da variável, função que altera o valor da variável] = hook() ou método do react;
   const [comments, setComments] = useState([
@@ -33,7 +48,10 @@ export const Post = ({ author, publishedAt, content }) => {
   });
 
   //handle: um padrão. Função disparada pela ação do usuário
-  function handleCreateNewComment() {
+  // Todas as funções que sao disparadas, por meio de eventos onClick, onChange, on...automaticamente o HTML, passa para essas funções, o "event" como primeiro parâmetro.
+  // FormEvent, pq foi disparado pelo Form
+  function handleCreateNewComment(event: FormEvent) {
+    //O typeScript, não sabe oque o event faz
     event.preventDefault();
 
     //Imutabilidade: não passo somente o quero inserir, mas sim o novo valor
@@ -41,24 +59,29 @@ export const Post = ({ author, publishedAt, content }) => {
     setNewCommentText("");
   }
 
-  function handleNewCommentChange() {
+  // ChangeEvent, pq utilizado o onChange
+  // <HTMLTextAreaElement>, é um generic, semelhante  um parâmetro, foi utilizado pq o onChange, foi disparado por uma textArea.
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
 
-  function handleNewCommentInvalid() {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     console.log(event);
     // setCustomValidity(), método para modificar o nome
     //target, elemento onde aconteceu o evento, nesse caso a textArea
     event.target.setCustomValidity("Esse campo é obrigatório!");
   }
 
-  function deleteComment(commentsToDelete) {
+  // deleteComment é void no typeScrip, porque não retorna nada, apenas faz alguma coisa
+  // Porem a função onDeleteComment, recebe um parâmetro que é uma string
+  function deleteComment(commentsToDelete: string) {
     // https://www.w3schools.com/jsref/jsref_filter.asp
     const commentsWithoutDeletedOne = comments.filter((comment) => {
       return comment !== commentsToDelete;
     });
     //Imutabilidade: As variáreis não sofrem mutação (nunca alteramos a variável na memoria). Nos criamos um novo valor (um novo espaço na memória)
+
     setComments(commentsWithoutDeletedOne);
   }
 
@@ -119,7 +142,6 @@ export const Post = ({ author, publishedAt, content }) => {
       </form>
 
       <div className={styles.commentList}>
-        {/* eslint-disable-next-line no-unused-vars */}
         {comments.map((comment) => {
           return (
             <Comment

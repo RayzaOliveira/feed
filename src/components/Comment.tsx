@@ -1,11 +1,16 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
 import { ThumbsUp, Trash } from "@phosphor-icons/react";
 
-export const Comment = ({ content, onDeleteComment }) => {
+interface CommentProps {
+  content: string;
+  // onDeleteComment, é uma função
+  onDeleteComment: (comment: string) => void;
+}
+
+export const Comment = ({ content, onDeleteComment }: CommentProps) => {
   const [likeCount, setLikeCount] = useState(0);
   function handleDeleteComment() {
     // Padrão de nomenclatura:onDeleteComment, para indicar função enviada como propriedade, função disparada pela ação do usuário.
@@ -18,7 +23,11 @@ export const Comment = ({ content, onDeleteComment }) => {
 
   return (
     <div className={styles.comment}>
-      <Avatar src="https://i.pinimg.com/564x/e9/8d/d1/e98dd1c06088cde75fdeef76783bbd4e.jpg" />
+      <Avatar
+        src="https://i.pinimg.com/564x/e9/8d/d1/e98dd1c06088cde75fdeef76783bbd4e.jpg"
+        // alt, não esta sendo usado para nada
+        alt=""
+      />
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
